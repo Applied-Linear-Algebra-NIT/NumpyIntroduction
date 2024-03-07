@@ -27,6 +27,7 @@ print("\n/-----------------\\")
 # Extracting specific rows or columns from a 2D array: 
 #           array[start_row:end_row, start_col:end_col] 
 subMatrix = threeByFourMatrix[:2, :2]
+
 print("\nSliced sub-matrix: \n")
 print(subMatrix)
 print("\n/-----------------\\")
@@ -37,8 +38,9 @@ print()
 # Three-dimensional matrix:
 tDM =  np.ones((2,3,4))
 
-# Iterating over the first dimension :
 print("Iteration: ")
+
+# Iterating over the first dimension :
 for i in range(tDM.shape[0]):
     # Printing each two-dimensional section
     print(f"{i+1}. ")
