@@ -10,3 +10,8 @@ print(task1_list)
 #creating 3*4 matrix
 task1_matrix=np.zeros((3,4))
 print(task1_matrix)
+
+#task1.3
+#creating 2*3*4 matrix
+matrix=np.ones((2,3,4))
+print(matrix)
