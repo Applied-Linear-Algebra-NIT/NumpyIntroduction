@@ -12,3 +12,12 @@ print("Mean:", mean)
 print("Median:", median)
 print("Variance:", variance)
 print("Standard Deviation:",std)
+
+#Correlation
+#creating arrays
+first_array = np.array([3, 2, 1, 4, 5])
+second_array = np.array([5, 4, 1, 2, 3])
+#Calculating the correlation coefficient
+correlation_coefficient = np.corrcoef(first_array,second_array)
+print("\nCorrelation Coefficient:\n",correlation_coefficient)
+
