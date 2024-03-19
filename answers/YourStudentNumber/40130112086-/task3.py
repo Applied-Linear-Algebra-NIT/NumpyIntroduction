@@ -21,3 +21,17 @@ vector = np.array([3,6])
 broadcasting = matrix + vector[:, np.newaxis]
 print("\n",broadcasting)
 
+#Reshaping and Flattening
+#Creating three-dimensional array
+three_dimensional= np.array([[[2, 4],[6, 8]],[[9, 10], [11, 12]]])
+#Reshaping the two-dimensional array
+two_dimensional= three_dimensional.reshape(-1,three_dimensional.shape[-1])
+#creating one-dimensional array
+array= two_dimensional.flatten()
+print("three-dimensional array:")
+print(three_dimensional)
+print("\ntwo-dimensional array:")
+print(two_dimensional)
+print("\n one-dimensional array:")
+print(array)
+
