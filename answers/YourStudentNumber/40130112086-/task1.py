@@ -1,5 +1,6 @@
 import numpy as np
 #task1.1
+
 #Creating Python list
 task1_list = [2,4,6,8]
 #Creating NumPy array
@@ -13,6 +14,7 @@ print("Data type:",task1_array.dtype)
 print("Sum of elements:",np.sum(task1_array))
 
 #task1.2
+
 #creating 3*4 matrix
 task1_matrix=np.zeros((3,4))
 print("\nTwo-dimensional matrix")
@@ -24,6 +26,7 @@ print("Data type:",task1_matrix.dtype)
 print("Sum of elements:",np.sum(task1_matrix))
 
 #task1.3
+
 #creating 2*3*4 matrix
 matrix=np.ones((2,3,4))
 print("\nThree-dimensional array")
