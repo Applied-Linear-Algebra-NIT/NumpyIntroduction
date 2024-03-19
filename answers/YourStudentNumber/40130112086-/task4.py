@@ -17,3 +17,10 @@ inverse = np.linalg.inv(matrix)
 print("\nDeterminant of the matrix:",determinant)
 print("\nInverse of the matrix:",inverse)
 
+#Eigenvalues and Eigenvectors
+#creating matrix
+square_matrix= np.array([[5, 9], [4, 7]])
+#the eigenvalues and eigenvectors
+eigenvalues, eigenvectors = np.linalg.eig(square_matrix)
+print("\nEigenvalues:",eigenvalues)
+print("\nEigenvectors:",eigenvectors)
