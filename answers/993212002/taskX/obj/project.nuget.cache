@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "0FtXZ7RnOoID1R2niIzaSH66ksVHzzcDJZYc03aEyLGQ2HfU1h7BONhdtUQDIhzzBj2R8+oj8vK6cduRu35KUA==",
+  "success": true,
+  "projectFilePath": "Z:\\993212002\\answers\\993212002\\taskX\\taskX.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\TundiDeLit\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
