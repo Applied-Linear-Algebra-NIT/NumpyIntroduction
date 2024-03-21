@@ -16,3 +16,4 @@ Z:\993212002\answers\993212002\taskX\obj\Debug\net8.0\ref\taskX.dll
 Z:\993212002\answers\993212002\taskX\bin\Debug\net8.0\MathNet.Numerics.dll
 Z:\993212002\answers\993212002\taskX\obj\Debug\net8.0\taskX.csproj.AssemblyReference.cache
 Z:\993212002\answers\993212002\taskX\obj\Debug\net8.0\taskX.csproj.Up2Date
+Z:\993212002\answers\993212002\taskX\bin\Debug\net8.0\Fractions.dll

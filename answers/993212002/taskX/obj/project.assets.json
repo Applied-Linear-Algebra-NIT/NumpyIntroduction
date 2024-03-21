@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "Fractions/7.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/Fractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/Fractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "MathNet.Numerics/5.0.0": {
         "type": "package",
         "compile": {
@@ -18,6 +31,24 @@
     }
   },
   "libraries": {
+    "Fractions/7.3.0": {
+      "sha512": "2bETFWLBc8b7Ut2SVi+bxhGVwiSpknHYGBh2PADyGWONLkTxT7bKyDRhF8ao+XUv90tq8Fl7GTPxSI5bacIRJw==",
+      "type": "package",
+      "path": "fractions/7.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Fraction.png",
+        "Readme.md",
+        "fractions.7.3.0.nupkg.sha512",
+        "fractions.nuspec",
+        "lib/netstandard2.0/Fractions.dll",
+        "lib/netstandard2.0/Fractions.xml",
+        "lib/netstandard2.1/Fractions.dll",
+        "lib/netstandard2.1/Fractions.xml",
+        "license.txt"
+      ]
+    },
     "MathNet.Numerics/5.0.0": {
       "sha512": "pg1W2VwaEQMAiTpGK840hZgzavnqjlCMTVSbtVCXVyT+7AX4mc1o89SPv4TBlAjhgCOo9c1Y+jZ5m3ti2YgGgA==",
       "type": "package",
@@ -43,6 +74,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Fractions >= 7.3.0",
       "mathnet.numerics >= 5.0.0"
     ]
   },
@@ -88,6 +120,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Fractions": {
+            "target": "Package",
+            "version": "[7.3.0, )"
+          },
           "mathnet.numerics": {
             "target": "Package",
             "version": "[5.0.0, )"

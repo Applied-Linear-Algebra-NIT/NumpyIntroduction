@@ -8,10 +8,19 @@
     ".NETCoreApp,Version=v8.0": {
       "taskX/1.0.0": {
         "dependencies": {
+          "Fractions": "7.3.0",
           "MathNet.Numerics": "5.0.0"
         },
         "runtime": {
           "taskX.dll": {}
+        }
+      },
+      "Fractions/7.3.0": {
+        "runtime": {
+          "lib/netstandard2.1/Fractions.dll": {
+            "assemblyVersion": "7.3.0.0",
+            "fileVersion": "7.3.0.0"
+          }
         }
       },
       "MathNet.Numerics/5.0.0": {
@@ -29,6 +38,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Fractions/7.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2bETFWLBc8b7Ut2SVi+bxhGVwiSpknHYGBh2PADyGWONLkTxT7bKyDRhF8ao+XUv90tq8Fl7GTPxSI5bacIRJw==",
+      "path": "fractions/7.3.0",
+      "hashPath": "fractions.7.3.0.nupkg.sha512"
     },
     "MathNet.Numerics/5.0.0": {
       "type": "package",
