@@ -8,7 +8,7 @@ Console.WriteLine("Hello, World!");
 
 System.Console.WriteLine();
 
-System.Console.WriteLine("Task 1:");
+System.Console.WriteLine("--- Task 1:");
 
 //Task 1
 //1. Creat Arrays
@@ -73,6 +73,9 @@ System.Console.WriteLine("Task 2:");
 //Task 2
 //1. Indexing
 //a. vector index
+
+System.Console.WriteLine("--- Task 2:");
+
 System.Console.WriteLine($"{vector_DoubleVector[2]}");
 
 //b. matrix index
@@ -114,6 +117,8 @@ System.Console.WriteLine("Task 3:");
 //Task 3
 //1. Arithmetic
 {
+
+    System.Console.WriteLine("--- Task 3:");
 
     //a. addition
     System.Console.WriteLine("Addition: every element +5");
@@ -199,6 +204,8 @@ System.Console.WriteLine();
 //Task 4
 {
 
+    System.Console.WriteLine("--- Task 4:");
+
     //1. Dot Multiplication    
     Matrix<double> first_DoubleMatrix = Matrix<double>.Build.Dense(3,3,(i,j)=>1+3/5*j-i+RandomNumberGenerator.GetInt32(1,3));
 
@@ -238,7 +245,7 @@ System.Console.WriteLine();
 
     //1. Descriptive
 
-    System.Console.WriteLine("--Description:");
+    System.Console.WriteLine("---Task 5\nDescription:");
 
     Vector<double> initial_DoubleVector = Vector<double>.Build.Dense(3,(i)=>3*i+RandomNumberGenerator.GetInt32(1,7)+2.5);
 
@@ -312,6 +319,55 @@ System.Console.WriteLine();
 //END OF TASK 5 ----------------------------
 
 //Task 6
+// Polynomial Fit
+{
+
+    System.Console.WriteLine();
+
+    System.Console.WriteLine("--- Task 6\nPolynomial: ");
+
+    Vector<double> first_DoubleVector = Vector<double>.Build.Dense(3 , i => 
+        RandomNumberGenerator.GetInt32(1,9) +
+            RandomNumberGenerator.GetInt32(1,9) /
+                RandomNumberGenerator.GetInt32(1,9) *
+                    i - RandomNumberGenerator.GetInt32(1,9));
+
+    Vector<double> second_DoubleVector = Vector<double>.Build.Dense(3 , i =>
+        RandomNumberGenerator.GetInt32(1,9) /
+            RandomNumberGenerator.GetInt32(1,9) *
+                i + RandomNumberGenerator.GetInt32(1,9));
+
+    System.Console.WriteLine($"first array: {first_DoubleVector.ToString()}");
+
+    System.Console.WriteLine($"second array: {second_DoubleVector.ToString()}");
+
+    Polynomial initial_Polynomial = Polynomial.Fit([..first_DoubleVector],[..second_DoubleVector],2);
+
+    System.Console.WriteLine($"PolyNomial Fit: {initial_Polynomial}");
+
+    double[] firstEvaluation_DoubleArray = initial_Polynomial.Evaluate(first_DoubleVector).ToArray();
+
+    double[] secondEvaluation_DoubleArray = initial_Polynomial.Evaluate(second_DoubleVector).ToArray();
+
+    System.Console.Write($"first evaluation: ");
+
+    foreach (double element in firstEvaluation_DoubleArray)
+    {
+
+        System.Console.Write($"{element} ");
+        
+    }
+
+    System.Console.Write($" |  second evaluation: ");
+
+    foreach (double element in secondEvaluation_DoubleArray)
+    {
+
+        System.Console.Write($"{element} ");
+        
+    }
+
+}
 
 //END OF TASK 6 ----------------------------
 
