@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Security.Cryptography;
 using MathNet.Numerics;
+using MathNet.Numerics.Distributions;
 using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.LinearAlgebra.Factorization;
 using MathNet.Numerics.Statistics;
 
 Console.WriteLine("Hello, World!");
@@ -236,6 +238,20 @@ System.Console.WriteLine();
 
     //3. Eigen Values & Vectors
 
+    Evd<double> eigenCalculation_DoubleEvd = first_DoubleMatrix.Evd();
+
+    Matrix<double> eigenVectors_DoubleMatrix = eigenCalculation_DoubleEvd.EigenVectors;
+
+    System.Console.Write("Eigen Vectors: ");
+
+    System.Console.WriteLine(eigenVectors_DoubleMatrix.ToString());
+
+    Vector<System.Numerics.Complex> eigenValues_DoubleVector  = eigenCalculation_DoubleEvd.EigenValues;
+
+    System.Console.Write("Eigen Values: ");
+
+    System.Console.WriteLine(eigenValues_DoubleVector.ToString());
+
 }
 
 //END OF TASK 4 ----------------------------
@@ -310,7 +326,7 @@ System.Console.WriteLine();
 
     System.Console.Write(Correlation.Pearson([.. initial_DoubleVector], [.. destination_DoubleVector]));
 
-    System.Console.WriteLine(" (same as hand written code)");
+    System.Console.WriteLine(" (same as hand written code, last digit may differ due to hardware limitations and internal methods)");
 
     System.Console.WriteLine($"hand written code: {correlation_Double} (calculations based on a yt math video: https://youtu.be/11c9cs6WpJU?si=3L3zy_9KBfOVv1aG)");
 
@@ -345,6 +361,12 @@ System.Console.WriteLine();
 
     System.Console.WriteLine($"PolyNomial Fit: {initial_Polynomial}");
 
+    Func<double,double,double> function_Func = (x,y) => x*y/(x+y);
+
+    System.Console.WriteLine($"Best Fit For Curve Of (x,y)=>x*y/(x+y): {Fit.Curve([..first_DoubleVector],[..second_DoubleVector],function_Func,RandomNumberGenerator.GetInt32(0,10))}");
+
+    System.Console.WriteLine($"Roots (vector): {Vector<System.Numerics.Complex>.Build.Dense(initial_Polynomial.Roots()).ToString()}");
+
     double[] firstEvaluation_DoubleArray = initial_Polynomial.Evaluate(first_DoubleVector).ToArray();
 
     double[] secondEvaluation_DoubleArray = initial_Polynomial.Evaluate(second_DoubleVector).ToArray();
@@ -372,3 +394,80 @@ System.Console.WriteLine();
 //END OF TASK 6 ----------------------------
 
 //END OF TASKS -----------------------------
+
+//Challenges
+System.Console.WriteLine();
+
+System.Console.WriteLine();
+
+System.Console.WriteLine("--- Challenges:");
+
+//Single Value Decomposition (used in image processing and data compression, solving linear equations and recommendation systems)
+{
+
+    System.Console.WriteLine();
+
+    System.Console.WriteLine("-Single Value Decomposition-");
+
+    Matrix<double> first_DoubleMatrix = Matrix<double>.Build.Dense(3,3,(i,j)=>1+3/5*j-i+RandomNumberGenerator.GetInt32(1,3));
+
+    Svd<double> eigenCalculation_DoubleEvd = first_DoubleMatrix.Svd();
+
+    System.Console.WriteLine($"matrix: {first_DoubleMatrix.ToString()}");
+
+    System.Console.WriteLine();
+
+    System.Console.Write("SVD \"U\" Matrix: ");
+
+    System.Console.WriteLine(eigenCalculation_DoubleEvd.U.ToString());
+
+    System.Console.Write("SVD \"Sigma\" Matrix: ");
+
+    System.Console.WriteLine(eigenCalculation_DoubleEvd.W.ToString());
+
+    System.Console.Write("SVD \"VT\" Matrix: ");
+
+    System.Console.WriteLine(eigenCalculation_DoubleEvd.VT.ToString());
+
+
+}
+
+//Probability Distributions
+{
+
+    System.Console.WriteLine();
+
+    System.Console.WriteLine("-Probability Distributions-");
+
+    Vector<double> first_DoubleMatrix = Vector<double>.Build.Dense(100, i => i*RandomNumberGenerator.GetInt32(70,170) + RandomNumberGenerator.GetInt32(300,10000)-RandomNumberGenerator.GetInt32(0,300));
+
+    System.Console.WriteLine($"Data: {first_DoubleMatrix.ToString()}");
+
+    System.Console.WriteLine($"Average: {first_DoubleMatrix.Average()}");
+
+    System.Console.WriteLine($"Mean: {first_DoubleMatrix.Mean()}");    
+
+    System.Console.WriteLine($"Standard Deviation: {first_DoubleMatrix.StandardDeviation()}");
+
+    System.Console.WriteLine($"Normal Distribution: {new Normal(first_DoubleMatrix.Mean(),first_DoubleMatrix.StandardDeviation())}");
+
+    System.Console.WriteLine($"Mode Of Normal Distribution: {new Normal(first_DoubleMatrix.Mean(),first_DoubleMatrix.StandardDeviation()).Mode}");
+
+    System.Console.WriteLine($"Precision Of Normal Distribution: {new Normal(first_DoubleMatrix.Mean(),first_DoubleMatrix.StandardDeviation()).Precision}");
+
+    System.Console.WriteLine($"Median Of Normal Distribution: {new Normal(first_DoubleMatrix.Mean(),first_DoubleMatrix.StandardDeviation()).Median}");
+
+    System.Console.WriteLine($"Variance Of Normal Distribution: {new Normal(first_DoubleMatrix.Mean(),first_DoubleMatrix.StandardDeviation()).Variance}");
+
+    System.Console.WriteLine($"Entropy Of Normal Distribution: {new Normal(first_DoubleMatrix.Mean(),first_DoubleMatrix.StandardDeviation()).Entropy}");
+
+    int randomNumber_Int = RandomNumberGenerator.GetInt32(0,20000);
+
+    System.Console.WriteLine($"Cumalative Distribution At {randomNumber_Int}: {new Normal(first_DoubleMatrix.Mean(),first_DoubleMatrix.StandardDeviation()).CumulativeDistribution(randomNumber_Int)}");
+
+    System.Console.WriteLine($"Generated Sample From Normal Distribution (Box-Muller): {new Normal(first_DoubleMatrix.Mean(),first_DoubleMatrix.StandardDeviation()).Sample()}");
+
+    _ = new Normal(first_DoubleMatrix.Mean(),first_DoubleMatrix.StandardDeviation()).Mode;
+
+}
+//END OF Challenges -----------------------------
