@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Security.Cryptography;
+using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.Statistics;
 
 Console.WriteLine("Hello, World!");
 
@@ -100,7 +102,7 @@ foreach (Matrix<double> matrix in matrix_DoubleMatrixArray)
 
     matrix_Int++;
 
-    ShowMatrix_Function(matrix);
+    System.Console.WriteLine(matrix.ToString());
     
 }
 
@@ -118,28 +120,28 @@ System.Console.WriteLine("Task 3:");
 
     Matrix<double> aMatrix_DoubleMatrix = matrix_DoubleMatrix.Add(5);
 
-    ShowMatrix_Function(aMatrix_DoubleMatrix);
+    System.Console.WriteLine(aMatrix_DoubleMatrix.ToString());
 
     //b. subtraction
     System.Console.WriteLine("Subtraction: every element -2");
 
     Matrix<double> bMatrix_DoubleMatrix = aMatrix_DoubleMatrix.Subtract(2);
 
-    ShowMatrix_Function(bMatrix_DoubleMatrix);
+    System.Console.WriteLine(bMatrix_DoubleMatrix.ToString());
 
     //c. nultiplication
     System.Console.WriteLine("Miltiplication: every element x5");
 
     Matrix<double> cMatrix_DoubleMatrix = bMatrix_DoubleMatrix.Multiply(5);
 
-    ShowMatrix_Function(cMatrix_DoubleMatrix);
+    System.Console.WriteLine(cMatrix_DoubleMatrix.ToString());
 
     //d. division
     System.Console.WriteLine("Division: every element devided by 3");
 
     Matrix<double> dMatrix_DoubleMatrix = cMatrix_DoubleMatrix.Divide(3);
 
-    ShowMatrix_Function(dMatrix_DoubleMatrix);
+    System.Console.WriteLine(dMatrix_DoubleMatrix.ToString());
 
 }
 
@@ -160,7 +162,7 @@ System.Console.WriteLine();
 
     System.Console.WriteLine("Matrix:");
 
-    ShowMatrix_Function(destination_DoubleMatrix);
+    System.Console.WriteLine(destination_DoubleMatrix.ToString());
 
     System.Console.WriteLine("Broadcasting:");
 
@@ -171,7 +173,7 @@ System.Console.WriteLine();
         
     }
 
-    ShowMatrix_Function(destination_DoubleMatrix);
+    System.Console.WriteLine(destination_DoubleMatrix.ToString());
 
 }
 
@@ -182,59 +184,135 @@ System.Console.WriteLine();
 
     System.Console.WriteLine("Reshaped:");
     
-    ShowMatrix_Function(reshaped_DoubleMatrix);
+    System.Console.WriteLine(reshaped_DoubleMatrix.ToString());
 
     Matrix<double> flatten_DoubleMatrix = Matrix<double>.Build.DenseOfRowVectors(reshaped_DoubleMatrix.Row(1));
 
     System.Console.WriteLine("Flattened:");
 
-    ShowMatrix_Function(flatten_DoubleMatrix);
+    System.Console.WriteLine(flatten_DoubleMatrix.ToString());
 
 }
 
 //END OF TASK 3 ----------------------------
 
-
-//END OF TASKS ----------------------------
-//Functions
-
-static void ShowMatrix_Function(Matrix<double> matrix)
+//Task 4
 {
 
-    int row_Int = 1;
+    //1. Dot Multiplication    
+    Matrix<double> first_DoubleMatrix = Matrix<double>.Build.Dense(3,3,(i,j)=>1+3/5*j-i+RandomNumberGenerator.GetInt32(1,3));
 
-    System.Console.Write($"  ");
+    Matrix<double> second_DoubleMatrix = Matrix<double>.Build.Dense(3,3,(i,j)=>2/5*j-i+RandomNumberGenerator.GetInt32(1,3));
 
-    for (int i = 0; i < matrix.ColumnCount; i++)
-    {
+    System.Console.WriteLine("first matrix:");
 
-        System.Console.Write($"c{i} ");
-        
-    }
+    System.Console.WriteLine(first_DoubleMatrix.ToString());
 
-    System.Console.WriteLine();
+    System.Console.WriteLine("second matrix:");
 
-    foreach (double[] row in matrix.ToRowArrays())
-    {
+    System.Console.WriteLine(second_DoubleMatrix.ToString());
 
-        System.Console.Write($"r{row_Int}");
+    Matrix<double> multiplier_DoubleMatrix = Matrix<double>.Build.DenseOfMatrix(first_DoubleMatrix.Multiply(second_DoubleMatrix));
 
-        row_Int++;
+    System.Console.WriteLine("multiplication:");
 
-        foreach (double element in row)
-        {
+    System.Console.WriteLine(multiplier_DoubleMatrix.ToString());
 
-            if(element<0)
-                System.Console.Write($"{element} ");
-            else
-                System.Console.Write($" {element} ");
-            
-        }
+    //2. Determinant & Inverse
+    System.Console.WriteLine("determinant:");
 
-        System.Console.WriteLine();
-        
-    }
+    System.Console.WriteLine(multiplier_DoubleMatrix.Determinant());
 
-    System.Console.WriteLine();
+    System.Console.WriteLine("inverse:");
+
+    System.Console.WriteLine(multiplier_DoubleMatrix.Inverse().ToString());
+
+    //3. Eigen Values & Vectors
 
 }
+
+//END OF TASK 4 ----------------------------
+
+//Task 5
+{
+
+    //1. Descriptive
+
+    System.Console.WriteLine("--Description:");
+
+    Vector<double> initial_DoubleVector = Vector<double>.Build.Dense(3,(i)=>3*i+RandomNumberGenerator.GetInt32(1,7)+2.5);
+
+    Vector<double> destination_DoubleVector = Vector<double>.Build.Dense(3,(i)=>2*i+0.5*RandomNumberGenerator.GetInt32(1,7)-2);
+
+    System.Console.Write("vector: ");
+
+    System.Console.WriteLine(initial_DoubleVector.ToString());
+
+    System.Console.Write("mean: ");
+
+    System.Console.WriteLine(initial_DoubleVector.Mean());
+
+    System.Console.Write("variance: ");
+
+    System.Console.WriteLine(initial_DoubleVector.Variance());
+
+    System.Console.Write("median: ");
+
+    System.Console.WriteLine(initial_DoubleVector.Median());
+
+    System.Console.Write("standard deviation: ");
+
+    System.Console.WriteLine(initial_DoubleVector.StandardDeviation());
+
+    //2. Correlation
+
+    System.Console.WriteLine();
+
+    System.Console.WriteLine("--Correlation:");
+
+    System.Console.Write("vector 1: ");
+
+    System.Console.WriteLine(initial_DoubleVector.ToString());
+
+    System.Console.Write("vector 2: ");
+
+    System.Console.WriteLine(destination_DoubleVector.ToString());
+
+    int numberOfElements_Double = initial_DoubleVector.Count;
+
+    double multiplicationSum_Double = Matrix<double>.Build.DenseOfColumnVectors(initial_DoubleVector).
+        Multiply(Matrix<double>.Build.DenseOfRowVectors(destination_DoubleVector)).Diagonal().Sum();
+
+    double firstSquaredSum_Double = Matrix<double>.Build.DenseOfColumnVectors(initial_DoubleVector).
+        Multiply(Matrix<double>.Build.DenseOfRowVectors(initial_DoubleVector)).Diagonal().Sum();
+
+    double destinationSquaredSum_Double = Matrix<double>.Build.DenseOfColumnVectors(destination_DoubleVector).
+        Multiply(Matrix<double>.Build.DenseOfRowVectors(destination_DoubleVector)).Diagonal().Sum();
+
+    double correlation_Double = (numberOfElements_Double * multiplicationSum_Double -
+        initial_DoubleVector.Sum()*destination_DoubleVector.Sum()) /
+            double.Sqrt(
+                (numberOfElements_Double * firstSquaredSum_Double - initial_DoubleVector.Sum() * initial_DoubleVector.Sum()) *
+                    (numberOfElements_Double * destinationSquaredSum_Double - destination_DoubleVector.Sum() * destination_DoubleVector.Sum()));
+
+    System.Console.Write("\"Spearman\" Correlation: ");
+    
+    System.Console.WriteLine(Correlation.Spearman([.. initial_DoubleVector], [.. destination_DoubleVector]));
+
+    System.Console.Write("\"Perason\" Correlation: ");
+
+    System.Console.Write(Correlation.Pearson([.. initial_DoubleVector], [.. destination_DoubleVector]));
+
+    System.Console.WriteLine(" (same as hand written code)");
+
+    System.Console.WriteLine($"hand written code: {correlation_Double} (calculations based on a yt math video: https://youtu.be/11c9cs6WpJU?si=3L3zy_9KBfOVv1aG)");
+
+}
+
+//END OF TASK 5 ----------------------------
+
+//Task 6
+
+//END OF TASK 6 ----------------------------
+
+//END OF TASKS -----------------------------
