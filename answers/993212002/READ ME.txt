@@ -1,0 +1,1 @@
+\993212002\taskX\bin\Debug\net8.0\taskX.exe

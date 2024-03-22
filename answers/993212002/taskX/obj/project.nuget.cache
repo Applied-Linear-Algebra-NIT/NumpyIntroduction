@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "S/KGlpAs2bo6eb0EWZd3v/gXG0HYIfirPfn9RFT0t1NCIXA8wDbV+HepPZiNpFYZ92OGZOboYy+5pcIVpcqPVA==",
+  "success": true,
+  "projectFilePath": "Z:\\993212002\\answers\\993212002\\taskX\\taskX.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\TundiDeLit\\.nuget\\packages\\fractions\\7.3.0\\fractions.7.3.0.nupkg.sha512",
+    "C:\\Users\\TundiDeLit\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
