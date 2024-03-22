@@ -482,5 +482,10 @@ System.Console.WriteLine("--- Challenges:");
     System.Console.WriteLine($"Generated Sample From Normal Distribution (Box-Muller): {new Normal(first_DoubleMatrix.Mean(),first_DoubleMatrix.StandardDeviation()).Sample()}");
 
 }
+
+System.Console.WriteLine("Press Anything To Exit");
+
+Console.ReadKey(true);
+
 //END OF Challenges -----------------------------
 //thank you for your patience! ;)
